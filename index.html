@@ -1872,6 +1872,137 @@
       width: 100% !important;
     }
 
+    /* 二维码弹框样式 */
+    .qr-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+    }
+
+    .qr-modal.show {
+      display: flex;
+    }
+
+    .qr-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+    }
+
+    .qr-modal-content {
+      position: relative;
+      background: var(--bg-primary);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-heavy);
+      max-width: 400px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    .qr-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--bg-secondary);
+    }
+
+    .qr-modal-title {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .qr-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+
+    .qr-modal-close:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .qr-modal-body {
+      padding: var(--spacing-lg);
+      text-align: center;
+    }
+
+    .qr-modal-image {
+      width: 200px;
+      height: 200px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      margin-bottom: var(--spacing-md);
+      object-fit: cover;
+    }
+
+    .qr-modal-desc {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* 移动端二维码弹框优化 */
+    @media (max-width: 768px) {
+      .qr-modal {
+        padding: var(--spacing-sm);
+      }
+
+      .qr-modal-content {
+        max-width: 320px;
+      }
+
+      .qr-modal-image {
+        width: 180px;
+        height: 180px;
+      }
+
+      .qr-modal-header {
+        padding: var(--spacing-sm);
+      }
+
+      .qr-modal-body {
+        padding: var(--spacing-md);
+      }
+    }
+
     /* 桌面端：确保左侧栏和右侧内容正确布局 */
     @media (min-width: 769px) {
       .col-span-4 {
@@ -1934,6 +2065,23 @@
   <button class="back-to-top" id="backToTop" title="返回顶部">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
   </button>
+
+  <!-- 二维码弹框 -->
+  <div class="qr-modal" id="qrModal">
+    <div class="qr-modal-overlay" onclick="closeQRModal()"></div>
+    <div class="qr-modal-content">
+      <div class="qr-modal-header">
+        <h3 class="qr-modal-title" id="qrModalTitle">扫码下载</h3>
+        <button class="qr-modal-close" onclick="closeQRModal()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="qr-modal-body">
+        <img class="qr-modal-image" id="qrModalImage" src="" alt="二维码" />
+        <p class="qr-modal-desc" id="qrModalDesc">请使用微信扫描二维码</p>
+      </div>
+    </div>
+  </div>
 
   <!-- 简历容器 -->
   <div class="magazine-container">
@@ -2408,6 +2556,7 @@
                       data-qr-type="app"
                       data-qr-src="assets/images/app.png"
                       data-qr-title="扫码下载蔻享学术App"
+                      onclick="showQRModal('assets/images/app.png', '扫码下载蔻享学术App', '请使用微信扫描二维码下载App')"
                       >App下载</div
                     >
                     <a
@@ -2479,7 +2628,8 @@
                     <div class="project-link qr-tooltip mini-program-btn" title="微信搜索'第六届青年行星论坛'可体验"
                       data-qr-type="mini"
                       data-qr-src="assets/images/mini.jpg"
-                      data-qr-title="扫码体验会议小程序">小程序</div>
+                      data-qr-title="扫码体验会议小程序"
+                      onclick="showQRModal('assets/images/mini.jpg', '扫码体验会议小程序', '请使用微信扫描二维码体验小程序')">小程序</div>
                     <a href="#" class="project-link qr-tooltip mini-program-btn" title="微信搜索'第六届青年行星论坛'可体验" target="_blank"
                       data-qr-type="mini"
                       data-qr-src="assets/images/mini.jpg"
@@ -2727,6 +2877,7 @@
         initSkillBars();
         initTypewriterEffect();
         initTooltips();
+        initQRModal();
     });
 
       // 滚动到技术能力区域
@@ -2857,6 +3008,46 @@
               tooltipEl.parentNode.removeChild(tooltipEl);
             }
           }, 300);
+        }
+      }
+
+      // 显示二维码弹框
+      function showQRModal(imageSrc, title, description) {
+        const modal = document.getElementById('qrModal');
+        const modalImage = document.getElementById('qrModalImage');
+        const modalTitle = document.getElementById('qrModalTitle');
+        const modalDesc = document.getElementById('qrModalDesc');
+        
+        modalImage.src = imageSrc;
+        modalTitle.textContent = title;
+        modalDesc.textContent = description;
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+      }
+
+      // 关闭二维码弹框
+      function closeQRModal() {
+        const modal = document.getElementById('qrModal');
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // 恢复背景滚动
+      }
+
+      // 初始化二维码弹框功能
+      function initQRModal() {
+        // 监听ESC键关闭弹框
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeQRModal();
+          }
+        });
+
+        // 监听弹框内容点击，防止事件冒泡
+        const modalContent = document.querySelector('.qr-modal-content');
+        if (modalContent) {
+          modalContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+          });
         }
       }
 
