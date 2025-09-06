@@ -501,9 +501,114 @@
         color: var(--text-primary);
       }
 
-      .info-value {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
+     .info-value {
+       color: var(--text-secondary);
+       font-size: 0.9rem;
+     }
+
+     .info-value a {
+       color: var(--secondary-color);
+       text-decoration: none;
+       transition: all 0.3s ease;
+       position: relative;
+     }
+
+     .info-value a:hover {
+       color: var(--accent-color);
+       transform: translateX(3px);
+     }
+
+     .info-value a:hover i {
+       transform: scale(1.2);
+     }
+
+     /* 小tag样式 */
+      .inline-tag {
+        display: inline-block;
+        background: var(--bg-accent);
+        color: var(--secondary-color);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        font-weight: 500;
+        border: 1px solid var(--bg-secondary);
+        margin: 0 2px;
+        font-family: 'Courier New', monospace;
+      }
+
+      /* 平台标签样式 */
+      .platform-tags {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-left: 8px;
+        align-items: center;
+      }
+
+      .platform-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: 1px solid;
+        transition: all 0.3s ease;
+      }
+
+      .platform-tag.admin {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-color: #667eea;
+      }
+
+      .platform-tag.desktop {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        border-color: #f093fb;
+      }
+
+      .platform-tag.mobile {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border-color: #4facfe;
+      }
+
+      .platform-tag.mini {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        color: white;
+        border-color: #43e97b;
+      }
+
+      .seo-tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-left: 8px;
+        border: 1px solid #fa709a;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .platform-tag:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .seo-tag:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* 端名称样式 */
+      .endpoint-name {
+        font-weight: 600;
+        color: var(--text-primary);
       }
 
       /* 联系方式样式 */
@@ -1719,18 +1824,15 @@
                   <span class="info-label">个人信息</span>
                   <span class="info-value">张 辉 / 男 / 7年经验</span>
                 </div>
-                <div class="info-item">
-                  <span class="info-label">技术博客</span>
-                  <span class="info-value">300+篇 / 70万+阅读</span>
-                </div>
-                <div class="info-item">
-                  <span class="info-label">软件著作权</span>
-                  <span class="info-value">13项国家认证</span>
-                </div>
-                <div class="info-item">
-                  <span class="info-label">用户规模</span>
-                  <span class="info-value">40万+用户覆盖</span>
-                </div>
+               <div class="info-item">
+                 <span class="info-label">技术博客</span>
+                 <span class="info-value">
+                   <a href="https://www.cnblogs.com/huihuihero/" target="_blank" title="点击访问技术博客">
+                     300+篇 / 70万+阅读
+                     <i class="fa fa-external-link" style="margin-left: 5px; font-size: 0.8rem;"></i>
+                   </a>
+                 </span>
+               </div>
               </div>
             </div>
 
@@ -1784,7 +1886,7 @@
                       margin-top: 0.5rem;
                     "
                   >
-                    精通PC/H5/小程序/App全端开发，主导开发过直播(高并发)、实时聊天室、视频平台、大型会务系统等核心业务场景，覆盖40万+用户访问
+                    熟练掌握 <span class="inline-tag">PC/H5/小程序/App</span> 全端开发，主导开发过直播(高并发)、实时聊天室、视频平台、大型会务系统等核心业务场景，覆盖40万+用户访问。
                   </p>
                 </div>
                 <div class="skill-item">
@@ -1806,7 +1908,7 @@
                       margin-top: 0.5rem;
                     "
                   >
-                    担任前端组长，主导需求评审、技术方案设计、任务拆分、进度把控与团队协作，具备项目管理及技术决策能力
+                    担任前端组长，主导需求评审、技术方案设计、任务拆分、进度把控与团队协作，具备项目管理及技术决策能力。
                   </p>
                 </div>
                 <div class="skill-item">
@@ -1828,7 +1930,7 @@
                       margin-top: 0.5rem;
                     "
                   >
-                    主导封装Uniapp跨端路由方案(基于Vue-Router语法)、Nuxt4项目框架生态、腾讯云COS/VOD上传组件等核心基建，提升团队开发效率30%+
+                    擅长工程化建设，主导封装Uniapp跨端路由方案(基于Vue-Router语法)、Nuxt4项目框架生态（包含接口请求、组件封装）从0到1封装，实现组员可落地开发、腾讯云COS/VOD上传组件等核心基建，提升团队开发效率30%+。
                   </p>
                 </div>
                 <div class="skill-item">
@@ -1850,14 +1952,12 @@
                       margin-top: 0.5rem;
                     "
                   >
-                    精通Vue2/Vue3生态(Vue-Router,
-                    Pinia/VueX)、UniApp跨端开发、Nuxt2/Nuxt3/Nuxt4
-                    SSR、WebSocket实时通信，精通主流UI库
+                    熟练掌握 <span class="inline-tag">Vue2/Vue3</span> 生态(Vue-Router, Pinia/VueX)，熟练掌握 <span class="inline-tag">UniApp</span> 跨端开发、<span class="inline-tag">Nuxt2/Nuxt3/Nuxt4</span> SSR服务端渲染、<span class="inline-tag">WebSocket</span> 实时通信，熟练掌握主流UI库(Element UI, Vant UI, Ant Design, T-Design)。
                   </p>
                 </div>
                 <div class="skill-item">
                   <div class="skill-header">
-                    <span class="skill-name">积极拥抱新技术与AI工具</span>
+                    <span class="skill-name">积极拥抱新技术与关注AI发展趋势</span>
                     <span class="skill-percentage">85%</span>
                   </div>
                   <div class="skill-bar">
@@ -1874,7 +1974,7 @@
                       margin-top: 0.5rem;
                     "
                   >
-                    持续关注并应用AI工具(如Cursor、Trae)辅助编程，善于利用AI进行代码优化、重构建议和疑难问题排查，显著提升开发效率与代码质量
+                    持续关注并应用AI工具（如Cursor、Trae）辅助编程，善于利用AI进行代码优化、重构建议和疑难问题排查，显著提升开发效率与代码质量，具备快速学习和应用新技术的能力。
                   </p>
                 </div>
               </div>
@@ -1980,7 +2080,7 @@
                   alt="二维码"
                   class="qrcode-image"
                 />
-                <p class="qrcode-desc">扫码查看在线简历</p>
+                <p class="qrcode-desc">手机扫一扫查看在线简历</p>
               </div>
             </div>
 
@@ -2044,7 +2144,7 @@
                     <li>
                       封装腾讯云COS/VOD上传组件等核心基建，提升团队开发效率30%+
                     </li>
-                    <li>成功推动13项软件著作权落地，支撑企业高新认证</li>
+                    <li>获得13项软件著作权落地，支撑企业高新认证</li>
                   </ul>
                 </div>
                 <div class="work-item">
@@ -2056,7 +2156,7 @@
                   </div>
                   <ul class="work-achievements">
                     <li>
-                      精通PC/H5/小程序/App全端开发，主导开发过直播(高并发)、实时聊天室、视频平台、大型会务系统等核心业务场景
+                      熟练掌握PC/H5/小程序/App全端开发，主导开发过直播(高并发)、实时聊天室、视频平台、大型会务系统等核心业务场景
                     </li>
                     <li>
                       覆盖40万+用户访问，具备复杂业务开发能力和多端技术栈深度实践
@@ -2067,7 +2167,7 @@
                       SSR服务端渲染、WebSocket实时通信
                     </li>
                     <li>
-                      精通主流UI库(Element UI, Vant UI, Ant Design, T-Design)
+                      熟练掌握主流UI库(Element UI, Vant UI, Ant Design, T-Design)
                     </li>
                   </ul>
                 </div>
@@ -2100,7 +2200,13 @@
                 <div class="project-item">
                   <div class="project-header">
                     <h4 class="project-title">
-                      蔻享学术平台 - 核心知识分享生态 (覆盖A端/C端[App/PC/H5])
+                      蔻享学术平台 - 核心知识分享生态 
+                      <span class="platform-tags">
+                        <span class="platform-tag admin">管理端</span>
+                        <span class="platform-tag mobile">App</span>
+                        <span class="platform-tag desktop">PC</span>
+                        <span class="platform-tag mobile">H5</span>
+                      </span>
                     </h4>
                     <span class="project-period">2023.05 - 至今</span>
                   </div>
@@ -2115,27 +2221,23 @@
                     <strong>担任角色：</strong>技术负责人 & 核心开发者
                   </p>
                   <p class="project-description">
-                    <strong>关键成果：</strong>
+                    <strong>关键职责与成果：</strong>
                   </p>
                   <ul class="work-achievements">
                     <li>
-                      用户端App：基于UniApp+Uni
-                      UI独立完成从0到1的架构、开发、上架(Android/iOS)，根据uni统计总用户数20万+
+                      <span class="endpoint-name">用户端 App</span>：基于 <span class="inline-tag">UniApp + Uni UI</span> 独立完成从0到1的架构、开发、上架（Android/iOS）。根据uni统计总用户数20万+
                     </li>
                     <li>
                       实现高并发直播流播放(FLV/HLS)、WebSocket实时聊天室(16种消息类型处理)、视频防盗播放、三方支付、微享社交平台等核心功能
                     </li>
                     <li>
-                      用户端PC：基于Vue3+Element
-                      UI开发，负责平台级接口加密方案、视频流防盗播放、微享社交系统、直播中心、用户主页、招聘模块等
+                      <span class="endpoint-name">用户端 PC</span>：基于 <span class="inline-tag">Vue3 + Element UI</span> 开发，负责平台级接口加密方案(MD5+时间戳+盐，显著降低攻击风险)、视频流防盗播放、微享社交系统(发帖/评论/点赞/关注)、直播中心(直播管理/创建)、用户主页(B站式综合主页)、招聘模块等核心功能
                     </li>
                     <li>
-                      用户端H5：基于Vue3+Vant
-                      UI开发，实现与PC端一致的核心功能，保障移动端用户体验
+                      <span class="endpoint-name">用户端 H5</span>：基于 <span class="inline-tag">Vue3 + Vant UI</span> 开发，实现与PC端一致的核心功能，保障移动端用户体验。
                     </li>
                     <li>
-                      管理端A端：基于Vue3+Element
-                      UI开发，实现权限/角色管理、用户管理、直播管理、视频管理、微享管理、订单管理等核心后台模块
+                      <span class="endpoint-name admin">管理端A端</span>：基于 <span class="inline-tag">Vue3 + Element UI</span> 开发，实现权限/角色管理、用户管理、直播管理、视频管理、微享管理、订单管理等核心后台模块
                     </li>
                   </ul>
                   <div class="project-links">
@@ -2156,7 +2258,13 @@
                   <div class="project-header">
                     <h4 class="project-title">
                       蔻享会议系统 - 全流程会务解决方案
-                      (覆盖A端/B端/C端[PC/H5/小程序])
+                      <span class="platform-tags">
+                        <span class="platform-tag admin">管理端</span>
+                        <span class="platform-tag admin">主办方端</span>
+                        <span class="platform-tag desktop">PC</span>
+                        <span class="platform-tag mobile">H5</span>
+                        <span class="platform-tag mini">小程序</span>
+                      </span>
                     </h4>
                     <span class="project-period">2022.01 - 2023.12</span>
                   </div>
@@ -2171,42 +2279,44 @@
                     <strong>担任角色：</strong>技术负责人 & 核心开发者
                   </p>
                   <p class="project-description">
-                    <strong>关键成果：</strong>
+                    <strong>关键职责与成果：</strong>
                   </p>
                   <ul class="work-achievements">
                     <li>
-                      管理端A端：基于Vue2+Element
-                      UI开发，实现会议管理(审核/预览/数据统计)、支付商户管理、用户统一管理等核心后台模块
+                      <span class="endpoint-name admin">管理端A端</span>：基于<span class="inline-tag">Vue2 + Element UI</span>开发，实现会议管理(审核/预览/数据统计)、支付商户管理、用户统一管理等核心后台模块
                     </li>
                     <li>
-                      管理端B端：基于Vue2+Element
-                      UI，主导开发可视化网站配置引擎(菜单/页面/版式配置)、注册配置、投审稿管理、墙报管理、酒店管理、费用管理、胸卡管理、签到管理、数据统计等模块
+                      <span class="endpoint-name admin">主办方端</span>：基于 <span class="inline-tag">Vue2 + Element UI</span>，主导开发可视化网站配置引擎（菜单/页面/版式配置）、注册配置、投审稿管理、墙报管理、酒店管理、费用管理、胸卡管理、签到管理、数据统计等模块，实现高度可定制化的会议官网生成。
                     </li>
                     <li>
-                      用户端PC/H5：基于PC：Vue2+AntDesign Vue；H5:Vue2+Vant
-                      UI，开发动态页面渲染引擎(支持10+控件类型渲染)，解析B端配置，实现复杂自定义页面、在线注册、投稿、会议日程、用户中心等核心功能
+                      <span class="endpoint-name">用户端 PC/H5</span>：基于 <span class="inline-tag">PC: Vue2 + AntDesign Vue</span><span class="inline-tag">H5: Vue2 + Vant UI</span>，开发动态页面渲染引擎（支持10+控件类型渲染），解析B端配置，实现复杂自定义页面、在线注册、投稿、会议日程、在线注册、用户中心(缴费/投稿/酒店预订/签到)等核心功能。
                     </li>
                     <li>
-                      用户端小程序：基于UniApp+Uni
-                      UI，独立完成由H5端迁移改造，功能与H5端一致，提供便捷的移动端参会入口
+                      <span class="endpoint-name">用户端小程序端</span>：基于 <span class="inline-tag">UniApp + Uni UI</span>，独立完成由H5端迁移改造，功能与H5端一致，提供便捷的移动端参会入口。
                     </li>
                   </ul>
                   <div class="project-links">
                     <a
                       href="https://conference.koushare.com/"
                       class="project-link"
-                      >B端管理</a
+                      >主办方端</a
                     >
                     <a href="https://qndxlt.cn/" class="project-link"
                       >示例会议</a
                     >
-                    <a href="#" class="project-link">小程序</a>
+                    <a href="#" class="project-link" title="微信搜索'第六届青年行星论坛'可体验">小程序</a>
                   </div>
                 </div>
                 <div class="project-item">
                   <div class="project-header">
                     <h4 class="project-title">
-                      蔻享期刊平台 - 学术期刊门户(覆盖A端/C端[PC/H5]) - SEO优化
+                      蔻享期刊平台 - 学术期刊门户
+                      <span class="platform-tags">
+                        <span class="platform-tag admin">管理端</span>
+                        <span class="platform-tag desktop">PC</span>
+                        <span class="platform-tag mobile">H5</span>
+                      </span>
+                      <span class="seo-tag">SEO优化</span>
                     </h4>
                     <span class="project-period">2021.06 - 2022.12</span>
                   </div>
@@ -2221,20 +2331,17 @@
                     <strong>担任角色：</strong>技术负责人 & 独立开发者
                   </p>
                   <p class="project-description">
-                    <strong>关键成果：</strong>
+                    <strong>关键职责与成果：</strong>
                   </p>
                   <ul class="work-achievements">
                     <li>
-                      管理端A端：基于Vue3+Element
-                      UI开发，实现期刊管理(预览/编辑/DOI导出)、投审稿管理(审稿人系统)等核心模块
+                      <span class="endpoint-name admin">管理端A端</span>：基于<span class="inline-tag">Vue3 + Element UI</span>开发，实现期刊管理(预览/编辑/DOI导出)、投审稿管理(审稿人系统)等核心模块。
                     </li>
                     <li>
-                      期刊PC端：主导将原Vue2项目重构为Nuxt2+Element
-                      UI，开发期刊视频、DOI信息、PDF内嵌、分享系统等。实现服务端渲染(SSR)，显著提升搜索引擎收录率
+                      <span class="endpoint-name">期刊PC端</span>：主导将原Vue2项目重构为 <span class="inline-tag">Nuxt2 + Element UI</span>，开发期刊视频、DOI信息、PDF内嵌、分享系统等。实现服务端渲染(SSR)，显著提升搜索引擎收录率。
                     </li>
                     <li>
-                      期刊H5端：基于Vue3+Vant
-                      UI独立开发，内容与PC端同步，提供良好的移动阅读体验
+                      <span class="endpoint-name">期刊H5端</span>：基于 <span class="inline-tag">Vue3 + Vant UI</span> 独立开发，内容与PC端同步，提供良好的移动阅读体验。
                     </li>
                   </ul>
                   <div class="project-links">
@@ -2259,17 +2366,17 @@
               </h3>
               <div class="evaluation-content">
                 <p class="evaluation-text">
-                  7年复杂业务开发经验，精通PC/H5/小程序/App全端开发，主导开发过直播(高并发)、实时聊天室、视频平台、大型会务系统等核心业务场景，覆盖40万+用户访问。具备前端技术负责人经验，主导需求评审、技术方案设计、任务拆分、进度把控与团队协作。
+                  7年复杂业务开发经验，熟练掌握PC/H5/小程序/App全端开发，主导开发过直播(高并发)、实时聊天室、视频平台、大型会务系统等核心业务场景，覆盖40万+用户访问。具备前端技术负责人经验，主导需求评审、技术方案设计、任务拆分、进度把控与团队协作。
                 </p>
                 <p class="evaluation-text">
-                  擅长工程化建设，主导封装Uniapp跨端路由方案(基于Vue-Router语法)、Nuxt4项目框架生态、腾讯云COS/VOD上传组件等核心基建，提升团队开发效率30%+。成功推动13项软件著作权落地，支撑企业高新认证。
+                  擅长工程化建设，主导封装Uniapp跨端路由方案(基于Vue-Router语法)、Nuxt4项目框架生态、腾讯云COS/VOD上传组件等核心基建，提升团队开发效率30%+。
                 </p>
                 <p class="evaluation-text">
                   积极拥抱新技术与关注AI发展趋势，持续关注并应用AI工具(如Cursor、Trae)辅助编程，善于利用AI进行代码优化、重构建议和疑难问题排查，显著提升开发效率与代码质量，具备快速学习和应用新技术的能力。
                 </p>
                 <div class="evaluation-highlight">
                   <i class="fa fa-quote-left" aria-hidden="true"></i>
-                  <span>"技术驱动创新，代码改变世界"</span>
+                  <span>技术驱动创新，代码改变世界</span>
                   <i class="fa fa-quote-right" aria-hidden="true"></i>
                 </div>
               </div>
@@ -2344,7 +2451,7 @@
             <div class="magazine-card tech-stack-card slide-in-right">
               <h3 class="magazine-title h3">
                 <i class="fa fa-cogs" aria-hidden="true"></i>
-                技术栈
+                技术能力
               </h3>
               <div class="tech-categories">
                 <div class="tech-category">
@@ -2383,6 +2490,7 @@
                     <span class="tech-tag">Vite</span>
                     <span class="tech-tag">前端架构设计</span>
                     <span class="tech-tag">性能优化</span>
+                    <span class="tech-tag">Git分支管理</span>
                   </div>
                 </div>
                 <div class="tech-category">
@@ -2395,13 +2503,13 @@
                   </div>
                 </div>
                 <div class="tech-category">
-                  <h4 class="tech-category-title">其他技术</h4>
+                  <h4 class="tech-category-title">编程语言</h4>
                   <div class="tech-tags">
                     <span class="tech-tag">JavaScript(ES6+)</span>
                     <span class="tech-tag">TypeScript</span>
                     <span class="tech-tag">HTML5</span>
                     <span class="tech-tag">CSS3/Less/Sass</span>
-                    <span class="tech-tag">Git分支管理</span>
+                    
                   </div>
                 </div>
               </div>
@@ -2415,7 +2523,7 @@
         <div class="magazine-grid grid-12">
           <div class="col-span-12 text-center">
             <div class="magazine-divider"></div>
-            <p class="magazine-accent">© 2025 张辉 - 前端开发工程师简历</p>
+            <p class="magazine-accent">© <span id="current-year"></span> 张辉 - 前端开发工程师简历</p>
           </div>
         </div>
       </footer>
@@ -2424,6 +2532,12 @@
     <script>
       // 页面加载完成后的初始化
       document.addEventListener("DOMContentLoaded", function () {
+        // 设置当前年份
+        const currentYearElement = document.getElementById('current-year');
+        if (currentYearElement) {
+          currentYearElement.textContent = new Date().getFullYear();
+        }
+
         // 初始化所有功能
         initScrollAnimations();
         initScrollIndicator();
