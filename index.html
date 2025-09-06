@@ -303,6 +303,12 @@
         width: 100%;
         text-align: center;
       }
+
+      /* 移动端隐藏技能点和二维码 */
+      .skill-card,
+      .qrcode-card {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -2164,15 +2170,15 @@
             </div>
           </div>
 
-          <!-- 装饰性元素 -->
-          <div class="magazine-card decoration-card">
-            <div class="decoration-content">
-              <div class="decoration-icon">
-                <i class="fa fa-rocket" aria-hidden="true"></i>
+            <!-- 装饰性元素 -->
+            <!-- <div class="magazine-card decoration-card">
+              <div class="decoration-content">
+                <div class="decoration-icon">
+                  <i class="fa fa-rocket" aria-hidden="true"></i>
+                </div>
+                <p class="decoration-text">技术驱动创新</p>
               </div>
-              <p class="decoration-text">技术驱动创新</p>
-            </div>
-          </div>
+            </div> -->
         </aside>
 
         <!-- 右侧主内容 - 占8列 -->
@@ -2462,11 +2468,11 @@
                 <p class="evaluation-text">
                   积极拥抱新技术与关注AI发展趋势，持续关注并应用AI工具(如Cursor、Trae)辅助编程，善于利用AI进行代码优化、重构建议和疑难问题排查，显著提升开发效率与代码质量，具备快速学习和应用新技术的能力。
               </p>
-              <div class="evaluation-highlight">
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                  <span>技术驱动创新，代码改变世界</span>
-                <i class="fa fa-quote-right" aria-hidden="true"></i>
-              </div>
+                <!-- <div class="evaluation-highlight">
+                  <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    <span>技术驱动创新，代码改变世界</span>
+                  <i class="fa fa-quote-right" aria-hidden="true"></i>
+                </div> -->
             </div>
           </div>
 
@@ -3018,9 +3024,10 @@
 
       document.addEventListener("touchend", (e) => {
       touchEndY = e.changedTouches[0].clientY;
-      handleSwipe();
+      // handleSwipe();
     });
 
+    // 移动端滑动凝滞感效果
     function handleSwipe() {
       const swipeThreshold = 50;
       const diff = touchStartY - touchEndY;
