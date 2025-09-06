@@ -72,6 +72,11 @@
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
         font-feature-settings: "kern" 1;
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow-x: hidden;
     }
 
     /* 杂志风格网格布局系统 */
@@ -308,6 +313,52 @@
       .skill-card,
       .qrcode-card {
         display: none;
+      }
+
+      /* 防止横向滚动 */
+      .work-period,
+      .project-period {
+        white-space: normal;
+        word-break: break-all;
+      }
+
+      /* 确保所有文本内容不会超出容器 */
+      .magazine-card * {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      /* 确保技术标签不会超出容器 */
+      .tech-tag {
+        max-width: 100%;
+        word-break: break-all;
+      }
+
+      /* 调整固定定位元素的位置，防止超出屏幕 */
+      .theme-toggle {
+        right: 10px;
+        top: 10px;
+      }
+
+      .back-to-top {
+        right: 10px;
+        bottom: 10px;
+      }
+
+      /* 确保时间轴标记不会超出容器 */
+      .timeline-marker {
+        left: -15px;
+      }
+
+      /* 确保工作成果列表项不会超出容器 */
+      .work-achievements li {
+        padding-left: var(--spacing-sm);
+      }
+
+      /* 确保所有卡片内容不会超出容器 */
+      .magazine-card {
+        overflow: hidden;
       }
     }
 
