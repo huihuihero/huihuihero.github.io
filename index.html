@@ -322,6 +322,12 @@
       div.app-download-btn,
       div.mini-program-btn {
         display: flex;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        position: relative;
+        z-index: 1;
       }
       
       a.app-download-btn,
@@ -2557,6 +2563,7 @@
                       data-qr-src="assets/images/app.png"
                       data-qr-title="扫码下载蔻享学术App"
                       onclick="showQRModal('assets/images/app.png', '扫码下载蔻享学术App', '请使用微信扫描二维码下载App')"
+                      ontouchend="showQRModal('assets/images/app.png', '扫码下载蔻享学术App', '请使用微信扫描二维码下载App')"
                       >App下载</div
                     >
                     <a
@@ -2629,7 +2636,8 @@
                       data-qr-type="mini"
                       data-qr-src="assets/images/mini.jpg"
                       data-qr-title="扫码体验会议小程序"
-                      onclick="showQRModal('assets/images/mini.jpg', '扫码体验会议小程序', '请使用微信扫描二维码体验小程序')">小程序</div>
+                      onclick="showQRModal('assets/images/mini.jpg', '扫码体验会议小程序', '请使用微信扫描二维码体验小程序')"
+                      ontouchend="showQRModal('assets/images/mini.jpg', '扫码体验会议小程序', '请使用微信扫描二维码体验小程序')">小程序</div>
                     <a href="#" class="project-link qr-tooltip mini-program-btn" title="微信搜索'第六届青年行星论坛'可体验" target="_blank"
                       data-qr-type="mini"
                       data-qr-src="assets/images/mini.jpg"
@@ -2705,11 +2713,11 @@
                 <p class="evaluation-text">
                   积极拥抱新技术与关注AI发展趋势，持续关注并应用AI工具(如Cursor、Trae)辅助编程，善于利用AI进行代码优化、重构建议和疑难问题排查，显著提升开发效率与代码质量，具备快速学习和应用新技术的能力。
               </p>
-                <!-- <div class="evaluation-highlight">
+                <div class="evaluation-highlight">
                   <i class="fa fa-quote-left" aria-hidden="true"></i>
                     <span>技术驱动创新，代码改变世界</span>
                   <i class="fa fa-quote-right" aria-hidden="true"></i>
-                </div> -->
+                </div>
             </div>
           </div>
 
@@ -3011,18 +3019,44 @@
         }
       }
 
+      // 防重复点击的标记
+      let lastClickTime = 0;
+      const CLICK_DELAY = 300; // 300ms内防止重复点击
+
       // 显示二维码弹框
       function showQRModal(imageSrc, title, description) {
+        const currentTime = Date.now();
+        
+        // 防止快速重复点击（300ms内）
+        if (currentTime - lastClickTime < CLICK_DELAY) {
+          return;
+        }
+        
+        lastClickTime = currentTime;
+        
         const modal = document.getElementById('qrModal');
         const modalImage = document.getElementById('qrModalImage');
         const modalTitle = document.getElementById('qrModalTitle');
         const modalDesc = document.getElementById('qrModalDesc');
         
-        modalImage.src = imageSrc;
-        modalTitle.textContent = title;
-        modalDesc.textContent = description;
+        // 如果弹框已经显示，先关闭再重新打开（确保内容更新）
+        if (modal.classList.contains('show')) {
+          modal.classList.remove('show');
+          // 短暂延迟后重新显示，确保动画效果
+          setTimeout(() => {
+            modalImage.src = imageSrc;
+            modalTitle.textContent = title;
+            modalDesc.textContent = description;
+            modal.classList.add('show');
+          }, 100);
+        } else {
+          // 直接显示
+          modalImage.src = imageSrc;
+          modalTitle.textContent = title;
+          modalDesc.textContent = description;
+          modal.classList.add('show');
+        }
         
-        modal.classList.add('show');
         document.body.style.overflow = 'hidden'; // 防止背景滚动
       }
 
