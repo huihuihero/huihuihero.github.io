@@ -321,7 +321,7 @@
       /* 移动端显示div按钮，隐藏a按钮（只针对App下载和小程序按钮） */
       div.app-download-btn,
       div.mini-program-btn {
-        display: inline-block;
+        display: flex;
       }
       
       a.app-download-btn,
@@ -2908,8 +2908,8 @@
           });
         });
 
-        // 处理二维码提示
-        const qrLinks = document.querySelectorAll('.qr-tooltip');
+        // 处理二维码提示（排除App下载和小程序按钮，因为它们使用点击弹框）
+        const qrLinks = document.querySelectorAll('.qr-tooltip:not(.app-download-btn):not(.mini-program-btn)');
         qrLinks.forEach(link => {
           link.addEventListener('mouseenter', function(e) {
             const rect = this.getBoundingClientRect();
