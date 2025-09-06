@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-  <title>张辉 - 资深前端开发工程师 | 杂志风格简历</title>
+  <title>张辉 - 资深前端开发工程师</title>
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
   <style>
     /* CSS变量系统 */
@@ -300,18 +300,32 @@
 
       /* 移动端：调整项目链接布局 */
       .project-links {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: flex-start;
+        gap: var(--spacing-sm);
       }
 
       .project-link {
-        width: 100%;
+        width: auto;
         text-align: center;
+        flex-shrink: 0;
       }
 
       /* 移动端隐藏技能点和二维码 */
       .skill-card,
       .qrcode-card {
+        display: none;
+      }
+
+      /* 移动端显示div按钮，隐藏a按钮（只针对App下载和小程序按钮） */
+      div.app-download-btn,
+      div.mini-program-btn {
+        display: inline-block;
+      }
+      
+      a.app-download-btn,
+      a.mini-program-btn {
         display: none;
       }
 
@@ -1869,6 +1883,17 @@
         grid-column: 5 / 13 !important;
         width: 100% !important;
       }
+
+      /* PC端显示a按钮，隐藏div按钮（只针对App下载和小程序按钮） */
+      div.app-download-btn,
+      div.mini-program-btn {
+        display: none;
+      }
+      
+      a.app-download-btn,
+      a.mini-program-btn {
+        display: inline-block;
+      }
     }
 
     /* 确保项目网格不会超出容器 */
@@ -1910,7 +1935,7 @@
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
   </button>
 
-  <!-- 杂志风格简历容器 -->
+  <!-- 简历容器 -->
   <div class="magazine-container">
     <!-- 页面标题区域 -->
     <header class="magazine-header">
@@ -2378,9 +2403,16 @@
                     </li>
                   </ul>
                 <div class="project-links">
+                    <div
+                      class="project-link qr-tooltip app-download-btn"
+                      data-qr-type="app"
+                      data-qr-src="assets/images/app.png"
+                      data-qr-title="扫码下载蔻享学术App"
+                      >App下载</div
+                    >
                     <a
                       href="https://m.koushare.com/downloadapp/" target="_blank"
-                      class="project-link qr-tooltip"
+                      class="project-link qr-tooltip app-download-btn"
                       data-qr-type="app"
                       data-qr-src="assets/images/app.png"
                       data-qr-title="扫码下载蔻享学术App"
@@ -2444,7 +2476,11 @@
                     <a href="https://qndxlt.cn/" class="project-link" target="_blank"
                       >示例会议</a
                     >
-                    <a href="#" class="project-link qr-tooltip" title="微信搜索'第六届青年行星论坛'可体验" target="_blank"
+                    <div class="project-link qr-tooltip mini-program-btn" title="微信搜索'第六届青年行星论坛'可体验"
+                      data-qr-type="mini"
+                      data-qr-src="assets/images/mini.jpg"
+                      data-qr-title="扫码体验会议小程序">小程序</div>
+                    <a href="#" class="project-link qr-tooltip mini-program-btn" title="微信搜索'第六届青年行星论坛'可体验" target="_blank"
                       data-qr-type="mini"
                       data-qr-src="assets/images/mini.jpg"
                       data-qr-title="扫码体验会议小程序">小程序</a>
